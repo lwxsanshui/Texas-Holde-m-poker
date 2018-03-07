@@ -104,6 +104,7 @@ $("#rule").on("click",function(){
     for(var a=0 ; a<13 ; a++){
         $card[a].remove();
     }
+    $("#win").html("");
     $("#game").one("click",function(){
         var winner = match(handCard);
     });
