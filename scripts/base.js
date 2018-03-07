@@ -1,5 +1,5 @@
 /**
- * Created by lwx on 2018/3/6.
+ * Created by lwx on 2018/3/7.
  * JS主要分成两个部分，第一部分是发牌以及动画效果
  * 第二部分是4副长度为7的牌比较大小；
  * 牌型和点数都一样大的，发牌顺序早的获胜；
@@ -98,5 +98,48 @@ $("#send").one("click",function(){
 
 $("#game").one("click",function(){
     var winner = match(handCard);
+});
+$("#rule").on("click",function(){
+    newgame();
+    for(var a=0 ; a<13 ; a++){
+        $card[a].remove();
+    }
+    $("#game").one("click",function(){
+        var winner = match(handCard);
+    });
+    $("#send").one("click",function(){
+        //在0-51中随机取13个数字，以指定发出去的牌
+        handCard = getNum(13,0,51);
+        $card = [];
+        //0，1对应gamer1，类推。最后五张是公牌
+        for(var i=0 ; i<13 ; i++){
+            $card[i]=$("<div class='card back'></div>");
+            $("#cardDB").append($card[i]);
+        }
+        //$card[11].css("top","400px");
+        //for()
+        showMoveCard($card[12],"400px","355px");
+        setTimeout('showMoveCard($card[11],"400px","435px")',200);
+        setTimeout('showMoveCard($card[10],"255px","745px")',600);
+        setTimeout('showMoveCard($card[9],"255px","825px")',800);
+        setTimeout('showMoveCard($card[8],"50px","355px")',1000);
+        setTimeout('showMoveCard($card[7],"50px","435px")',1200);
+        setTimeout('showMoveCard($card[6],"255px","-25px")',1400);
+        setTimeout('showMoveCard($card[5],"255px","55px")',1600);
+        setTimeout('showMoveCard($card[4],"245px","235px")',1800);
+        setTimeout('showMoveCard($card[3],"245px","315px")',2000);
+        setTimeout('showMoveCard($card[2],"245px","395px")',2200);
+        setTimeout('showMoveCard($card[1],"245px","475px")',2400);
+        setTimeout('showMoveCard($card[0],"245px","555px")',2600);
+        //把公牌和自己的牌面反过来
+        setTimeout('{showCardNumber($card[0],handCard[0]);}',3100);
+        setTimeout('{showCardNumber($card[1],handCard[1]);}',3100);
+        setTimeout('{showCardNumber($card[2],handCard[2]);}',3100);
+        setTimeout('{showCardNumber($card[3],handCard[3]);}',3100);
+        setTimeout('{showCardNumber($card[4],handCard[4]);}',3100);
+        setTimeout('{showCardNumber($card[11],handCard[11]);}',3500);
+        setTimeout('{showCardNumber($card[12],handCard[12]);}',3500);
+
+    });
 });
 
