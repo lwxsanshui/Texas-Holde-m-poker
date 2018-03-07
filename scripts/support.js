@@ -106,7 +106,7 @@ function match(handCard){
     for(var l=5; l<11 ; l++){
         showCardNumber($card[l],handCard[l]);
     }
-    var winnerStr;
+    var winnerStr="机器人";
     switch (winner){
         case 1:winnerStr=gamer1[0];
             break;
