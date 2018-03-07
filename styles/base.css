@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#main{
+    position: relative;
+    height: 600px;
+    width: 960px;
+    margin: 0 auto;
+    top: 50px;
+    background-color: antiquewhite;
+}
+.card{
+    position: absolute;
+    width: 60px;
+    height: 90px;
+    border: 1px solid black;
+    border-radius: 5px;
+    /*line-height:90px;*/
+    text-align: center;
+    font-size: 30px;
+}
+.back {
+    background: white url("../src/card.png") no-repeat center;
+}
+.front_red {
+    background-color: white;
+    color: red;
+}
+.front_black {
+    background-color: white;
+    color: black;
+}
+#up_gamer{
+    position: absolute;
+    height: 110px;
+    /*border: 1px solid black;*/
+    width: 100%;
+    top:0;
+}
+#cardDB{
+    position: absolute;
+    width: 120px;
+    top:5px;
+    left: 50px;
+}
+#cardDB #card1{
+    border-right: 4px solid black;
+    border-bottom: 4px solid black;
+}
+#gamer1{
+    position: absolute;
+    /*border: 1px solid black;*/
+    height: 28px;
+    top: 3px;
+    width: 200px;
+    margin:0px 420px;
+}
+#gamer2{
+    position: absolute;
+    /*border: 1px solid black;*/
+    height: 28px;
+    top: 170px;
+    width: 200px;
+    margin-left:4px;
+}
+
+#gamer3{
+    position: absolute;
+    /*border: 1px solid black;*/
+    height: 28px;
+    top: 170px;
+    width: 200px;
+    margin-left:830px;
+}
+
+#gamer4{
+    position: absolute;
+    /*border: 1px solid black;*/
+    height: 28px;
+    top: 81px;
+    width: 200px;
+    margin:0px 420px;
+}
+.gamer-score{
+    /*float: right;*/
+}
+
+
+
+
+
+#center_gamer{
+    position: absolute;
+    height: 200px;
+    top: 190px;
+    /*border: 1px solid black;*/
+    width: 100%;
+}
+#down_gamer{
+    position: absolute;
+    height: 110px;
+    /*border: 1px solid black;*/
+    bottom: 60px;
+    width: 100%;
+
+}
+#panel{
+    position: absolute;
+    height: 50px;
+    /*border: 1px solid black;*/
+    bottom: 0px;
+    width: 100%;
+}
+
+
+
+
+#panel button{
+    height: 35px;
+    width: 90px;
+    /*vertical-align: middle;*/
+    line-height: 35px;
+    margin-top: 10px;
+}
+#panel #send{
+    float: left;
+    margin-left: 30px;
+}
+#panel #rule{
+    float: right;
+    margin-right: 30px;
+}
+#panel #option{
+    display: inline-block;
+    width: 250px;
+    margin-left: 263px;
+}
+#panel #abandon{
+    margin-left: 60px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
