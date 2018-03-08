@@ -109,17 +109,34 @@ function match(handCard){
     var winnerStr="机器人";
     switch (winner){
         case 1:winnerStr=gamer1[0];
+            gamer1[1]+=900;
+            gamer2[1]-=300;
+            gamer3[1]-=300;
+            gamer4[1]-=300;
             break;
         case 2:winnerStr=gamer2[0];
+            gamer1[1]-=300;
+            gamer2[1]+=900;
+            gamer3[1]-=300;
+            gamer4[1]-=300;
             break;
         case 3:winnerStr=gamer3[0];
+            gamer1[1]-=300;
+            gamer2[1]-=300;
+            gamer3[1]+=900;
+            gamer4[1]-=300;
             break;
         case 4:winnerStr=gamer4[0];
+            gamer1[1]-=300;
+            gamer2[1]-=300;
+            gamer3[1]-=300;
+            gamer4[1]+=900;
             break;
         break;
     }
     $("#win").html(winnerStr+"赢了");
 
+    updateScore();
 
 }
 function maxMatch(a,b,c,d){
