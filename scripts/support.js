@@ -106,7 +106,7 @@ function match(handCard){
     for(var l=5; l<11 ; l++){
         showCardNumber($card[l],handCard[l]);
     }
-    var winnerStr="这把有同花，太可怕了，就当没人";
+    var winnerStr="机器人";
     switch (winner){
         case 1:winnerStr=gamer1[0];
             gamer1[1]+=900;
@@ -132,7 +132,6 @@ function match(handCard){
             gamer3[1]-=300;
             gamer4[1]+=900;
             break;
-            
         break;
     }
     $("#win").html(winnerStr+"赢了");
@@ -335,7 +334,7 @@ function maxCard(arr){
         }else if(d.length>4){
             a=d;
         }
-        //最大的赋给然后排序
+        //最大的赋给a然后排序
         for(var i=0 ; i< a.length ; i++){
             if(a[i]%13==0){
                 a[i]=a[i]+13;
@@ -348,12 +347,14 @@ function maxCard(arr){
                 if(issnake(a.slice(k-4,k+1))){
                     result = a.slice(k-4,k+1);
                 result.push(6);
+                    return result;
                 }
             }
-        }else{//不是同花顺进入正常判断
-                result = a.slice(a.length-5);
-        result.push(5);
         }
+        //不是同花顺则是同花
+        result = a.slice(a.length-5);
+        result.push(5);
+
     }else{//如果不是同花
         var _arr = []
         for(var i=0 ; i<7 ; i++){
@@ -367,13 +368,14 @@ function maxCard(arr){
         //判断是不是顺子
         var _arrU = unique(_arr);
         if(_arrU.length>4){
-            for(var k=4;k<a.length;k++){
-                if(issnake(a.slice(k-4,k+1))){
-                    result = a.slice(k-4,k+1);
+            for(var k=4;k<_arrU.length;k++){
+                if(issnake(_arrU.slice(k-4,k+1))){
+                    result = _arrU.slice(k-4,k+1);
                 result.push(4);
-                    return result;
+
                 }
             }
+            return result;
         }
         //不是同花也不是顺子
         var maxS = maxSame(_arr);
