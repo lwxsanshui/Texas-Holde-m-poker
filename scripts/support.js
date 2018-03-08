@@ -106,7 +106,7 @@ function match(handCard){
     for(var l=5; l<11 ; l++){
         showCardNumber($card[l],handCard[l]);
     }
-    var winnerStr="";
+    var winnerStr="这把有同花，太可怕了，就当没人";
     switch (winner){
         case 1:winnerStr=gamer1[0];
             gamer1[1]+=900;
@@ -132,7 +132,7 @@ function match(handCard){
             gamer3[1]-=300;
             gamer4[1]+=900;
             break;
-            winnerStr="这把有同花，太可怕了，就当没人";
+            
         break;
     }
     $("#win").html(winnerStr+"赢了");
