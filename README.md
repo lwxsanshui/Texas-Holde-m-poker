@@ -12,6 +12,11 @@
 牌型相同的则依次比最大的牌点数大小。
 相同的牌型和相同的点数则
 本家>下家>上家>对家；
+</br>
+
+每个人初始分数为2000，每局获胜获得600分，输扣去200分；
+本家主动放弃扣100分；
+当某位玩家分数小于1分时，游戏结束。
 
 [游戏地址](http://liuwx.xyz/Texas-Holde-m-poker/index.html)
 http://liuwx.xyz/Texas-Holde-m-poker/index.html
