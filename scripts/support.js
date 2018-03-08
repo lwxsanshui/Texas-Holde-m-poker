@@ -372,10 +372,10 @@ function maxCard(arr){
                 if(issnake(_arrU.slice(k-4,k+1))){
                     result = _arrU.slice(k-4,k+1);
                 result.push(4);
-
+                return result;
                 }
             }
-            return result;
+            
         }
         //不是同花也不是顺子
         var maxS = maxSame(_arr);
