@@ -4,7 +4,7 @@
  * 第二部分是4副长度为7的牌比较大小；
  * 牌型和点数都一样大的，发牌顺序早的获胜；
  *
- *
+ *存在的问题，顺子的判定
  *
  */
 
@@ -21,21 +21,25 @@ $(document).ready(function(e){
 var handCard = [];
 //手牌和公牌元素
 var $card = [];
+var canMatch = false;
+var canGiveup = false;
+var canSend = true;
+var canGame = true;
 //20个备选游戏人物
 var gamerNames = ["王重阳","云中鹤","东方不败","西门吹雪","叶孤城","花满楼","萧十一郎","金蛇郎君","阿飞","小林仙儿","夜神月","阿喀琉斯","胡铁花","小马","风清扬","金木研","御坂美琴","上条当麻","百晓生","天机老人"];
 //[0]是游戏人物，[1]是初始金币
 //初始化四个游戏人物，本家固定姓名，其他三家随机；
-var gamer1 = ["",2000];
-var gamer2 = ["",2000];
-var gamer3 = ["",2000];
-var gamer4 = ["令狐冲",2000];
+var gamer1 = ["",800];
+var gamer2 = ["",800];
+var gamer3 = ["",800];
+var gamer4 = ["令狐冲",800];
 function newgame(){
     gamer1[0] = setName();
     gamer2[0] = setName();
     gamer3[0] = setName();
-    gamer1[1] = 2000;
-    gamer2[1] = 2000;
-    gamer3[1] = 2000;
+    //gamer1[1] = 2000;
+    //gamer2[1] = 2000;
+    //gamer3[1] = 2000;
     updateName()
     updateScore();
 
@@ -59,10 +63,34 @@ function updateScore(){
     $("#gamer2 .gamer-score").html(gamer2[1]);
     $("#gamer3 .gamer-score").html(gamer3[1]);
     $("#gamer4 .gamer-score").html(gamer4[1]);
+    if(gamer4[1]<=0){
+        alert(gamer4[0]+",你被淘汰了！我们为你感到惋惜");
+        canGame = false;
+    }else{
+        if(gamer1[1]<=0){
+            canGame =false;
+            alert(gamer1[0]+"被淘汰了，你坚持到了最后");
+        }
+        if(gamer2[1]<=0){
+            canGame = false;
+            alert(gamer2[0]+"被淘汰了，你坚持到了最后");
+        }
+        if(gamer3[1]<=0){
+            canGame = false;
+            alert(gamer3[0]+"被淘汰了，你坚持到了最后");
+        }
+    }
+
 }
 //发牌
-$("#send").one("click",function(){
+$("#send").on("click",function(){
     //在0-51中随机取13个数字，以指定发出去的牌
+    if(!canSend){
+        return;
+    }
+    if(!canGame){
+        return;
+    }
     handCard = getNum(13,0,51);
     $card = [];
     //0，1对应gamer1，类推。最后五张是公牌
@@ -93,54 +121,40 @@ $("#send").one("click",function(){
     setTimeout('{showCardNumber($card[4],handCard[4]);}',3100);
     setTimeout('{showCardNumber($card[11],handCard[11]);}',3500);
     setTimeout('{showCardNumber($card[12],handCard[12]);}',3500);
+    canMatch =true;
+    canGiveup = true;
+    canSend = false;
+});
+$("#abondon").on("click",function(){
+    if(canGiveup){
+        for(var a=0 ; a<13 ; a++){
+            $card[a].removeClass("front_black");
+            $card[a].addClass("back");
+            $card[a].html("");
+
+        }
+        gamer4[1]-=100;
+        canMatch = false;
+        canGiveup = false;
+        updateScore();
+    }
 
 });
-
-$("#game").one("click",function(){
-    var winner = match(handCard);
+$("#game").on("click",function(){
+    if(canMatch){
+        match(handCard);
+    }
+    canGiveup = false;
+    canMatch = false;
 });
+
 $("#rule").on("click",function(){
-    newgame();
+    canSend = true;
+    canMatch =false;
+    canGiveup = false;
     for(var a=0 ; a<13 ; a++){
         $card[a].remove();
     }
     $("#win").html("");
-    $("#game").one("click",function(){
-        var winner = match(handCard);
-    });
-    $("#send").one("click",function(){
-        //在0-51中随机取13个数字，以指定发出去的牌
-        handCard = getNum(13,0,51);
-        $card = [];
-        //0，1对应gamer1，类推。最后五张是公牌
-        for(var i=0 ; i<13 ; i++){
-            $card[i]=$("<div class='card back'></div>");
-            $("#cardDB").append($card[i]);
-        }
-        //$card[11].css("top","400px");
-        //for()
-        showMoveCard($card[12],"400px","355px");
-        setTimeout('showMoveCard($card[11],"400px","435px")',200);
-        setTimeout('showMoveCard($card[10],"255px","745px")',600);
-        setTimeout('showMoveCard($card[9],"255px","825px")',800);
-        setTimeout('showMoveCard($card[8],"50px","355px")',1000);
-        setTimeout('showMoveCard($card[7],"50px","435px")',1200);
-        setTimeout('showMoveCard($card[6],"255px","-25px")',1400);
-        setTimeout('showMoveCard($card[5],"255px","55px")',1600);
-        setTimeout('showMoveCard($card[4],"245px","235px")',1800);
-        setTimeout('showMoveCard($card[3],"245px","315px")',2000);
-        setTimeout('showMoveCard($card[2],"245px","395px")',2200);
-        setTimeout('showMoveCard($card[1],"245px","475px")',2400);
-        setTimeout('showMoveCard($card[0],"245px","555px")',2600);
-        //把公牌和自己的牌面反过来
-        setTimeout('{showCardNumber($card[0],handCard[0]);}',3100);
-        setTimeout('{showCardNumber($card[1],handCard[1]);}',3100);
-        setTimeout('{showCardNumber($card[2],handCard[2]);}',3100);
-        setTimeout('{showCardNumber($card[3],handCard[3]);}',3100);
-        setTimeout('{showCardNumber($card[4],handCard[4]);}',3100);
-        setTimeout('{showCardNumber($card[11],handCard[11]);}',3500);
-        setTimeout('{showCardNumber($card[12],handCard[12]);}',3500);
-
-    });
 });
 
