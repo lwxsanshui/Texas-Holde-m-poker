@@ -29,10 +29,10 @@ var canGame = true;
 var gamerNames = ["王重阳","云中鹤","东方不败","西门吹雪","叶孤城","花满楼","萧十一郎","金蛇郎君","阿飞","小林仙儿","夜神月","阿喀琉斯","胡铁花","小马","风清扬","金木研","御坂美琴","上条当麻","百晓生","天机老人"];
 //[0]是游戏人物，[1]是初始金币
 //初始化四个游戏人物，本家固定姓名，其他三家随机；
-var gamer1 = ["",800];
-var gamer2 = ["",800];
-var gamer3 = ["",800];
-var gamer4 = ["令狐冲",800];
+var gamer1 = ["",2000];
+var gamer2 = ["",2000];
+var gamer3 = ["",2000];
+var gamer4 = ["令狐冲",2000];
 function newgame(){
     gamer1[0] = setName();
     gamer2[0] = setName();
@@ -89,6 +89,7 @@ $("#send").on("click",function(){
         return;
     }
     if(!canGame){
+        alert("游戏结束了！")
         return;
     }
     handCard = getNum(13,0,51);
