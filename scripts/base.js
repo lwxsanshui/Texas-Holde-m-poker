@@ -129,9 +129,7 @@ $("#send").on("click",function(){
 $("#abondon").on("click",function(){
     if(canGiveup){
         for(var a=0 ; a<13 ; a++){
-            $card[a].removeClass("front_black");
-            $card[a].addClass("back");
-            $card[a].html("");
+            showCardNumber($card[a],handCard[a]);
 
         }
         gamer4[1]-=100;
