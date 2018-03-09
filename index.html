@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+<!--作者：刘文晓；联系方式：lwx_sanshui@163.com-->
+<!--github:https://github.com/lwxsanshui-->
 <head lang="en">
     <meta charset="UTF-8">
     <title>德州扑克</title>
@@ -12,6 +14,7 @@
             <div class="card back" id="card1"></div>
         </div>
         <div id="gamer1"><span class="gamer-name"></span><br/><span>金币： </span><span class="gamer-score">2000</span></div>
+        <button id="open-rule">规则</button>
     </div>
     <div id="center_gamer">
         <div id="gamer2"><span class="gamer-name"></span><br/><span>金币： </span><span class="gamer-score">2000</span></div>
@@ -27,11 +30,24 @@
             <button id="game">参赛</button>
             <button id="abondon">弃牌</button>
         </div>
-        <button id="rule">再来一局</button>
+        <button id="newOne">再来一局</button>
     </div>
     <div id="win"></div>
 </div>
-
+<div id="rule">
+    <button id="close-rule">关闭</button>
+    <p>游戏规则：每位玩家有2张手牌，与5张公牌在一起选出最大的5张牌作为自己的参赛牌。<br/>
+        每位玩家初始金币为2000，赢家+900，输家-300；本家弃牌则直接-100；<br/>
+        大小的判定，牌型的大小为：
+        同花顺>同花>顺子>四条>三条>对子>单牌
+        <br/>
+        同样牌型的玩家对比点数大小；最大的单牌相同则比下一张；所有牌型相同则本家>右家>左家>上家
+        <br/>
+        <br/>
+        <br/>
+        作者：liuwx
+    </p>
+</div>
 <script src="scripts/jquery.js"></script>
 <script src="scripts/support.js"></script>
 <script src="scripts/base.js"></script>
