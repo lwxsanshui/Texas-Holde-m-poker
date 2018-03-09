@@ -1,11 +1,11 @@
 /**
- * Created by lwx on 2018/3/7.
+ * Created by lwx on 2018/3/6.
+ *  作者：刘文晓
+ * 联系方式：lwx_sanshui@163.com
+ * github地址：https://github.com/lwxsanshui
  * JS主要分成两个部分，第一部分是发牌以及动画效果
  * 第二部分是4副长度为7的牌比较大小；
  * 牌型和点数都一样大的，发牌顺序早的获胜；
- *
- *
- *
  */
 
 
@@ -149,7 +149,7 @@ $("#game").on("click",function(){
     canMatch = false;
 });
 
-$("#rule").on("click",function(){
+$("#newOne").on("click",function(){
     canSend = true;
     canMatch =false;
     canGiveup = false;
@@ -158,4 +158,11 @@ $("#rule").on("click",function(){
     }
     $("#win").html("");
 });
-
+//打开规则
+$("#open-rule").click(function () {
+    $("#rule").css("visibility","visible");
+});
+//关闭规则
+$("#close-rule").click(function(){
+    $("#rule").css("visibility","hidden");
+});
